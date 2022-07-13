@@ -1,6 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var pg = require('pg');
+const { Pool } = require('pg');
 // var fetch = require('node-fetch');
 
 var app = express();
