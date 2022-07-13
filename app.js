@@ -7,7 +7,12 @@ var app = express();
 
 // pool takes the object above -config- as parameter
 const connectionString = process.env.DATABASE_URL
-const pool = new Pool({connectionString: connectionString});
+const pool = new Pool({
+    connectionString: connectionString,
+    ssl: {
+        rejectUnauthorized: false,
+    }
+});
 
 app.set('port', process.env.PORT || 5000);
 
