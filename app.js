@@ -16,7 +16,7 @@ app.get('/', function (req, res) {
     console.log('Hello IFN !');
     //console.log('here', Object.keys(req.body));
     // res.status(200).send(req.body);
-    res.send("Hello IFN !");
+    res.status(200).send("Hello IFN !");
 
 });
 // ———————— ADDED MOCKING SERVICE ————————  
@@ -31,7 +31,7 @@ app.get("/serviceability", (req, res) => {
           done();
           if(err) return console.error(err);
           console.log(result.rows);
-          res.send(JSON.stringify(result));
+          res.status(200).send(JSON.stringify(result));
         });
     });
       
