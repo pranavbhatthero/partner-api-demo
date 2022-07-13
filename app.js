@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 ///*
 // ———————— ADDED MOCKING SERVICE ————————
-app.get('/', function (req, res) {
+app.get('/mock', function (req, res) {
     console.log('Hello IFN !');
     //console.log('here', Object.keys(req.body));
     // res.status(200).send(req.body);
