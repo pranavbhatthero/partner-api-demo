@@ -1,7 +1,6 @@
 var express = require('express');
 var bodyParser = require('body-parser');
 const { Pool } = require('pg');
-// var fetch = require('node-fetch');
 
 var app = express();
 
@@ -19,7 +18,7 @@ app.set('port', process.env.PORT || 5000);
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-///*
+
 // ———————— ADDED MOCKING SERVICE ————————
 app.get('/', function (req, res) {
     console.log('Hello IFN !');
@@ -29,7 +28,6 @@ app.get('/', function (req, res) {
 
 });
 // ———————— ADDED MOCKING SERVICE ————————  
-//*/
 
 // ———————— ADDED GET SERVICE ————————
 app.get("/serviceability", (req, res) => {
@@ -49,24 +47,12 @@ app.get("/serviceability", (req, res) => {
             res.status(200).send(JSON.stringify(result.rows, null, '\t'));
             //res.status(200).send(result.rows);            
         })
-    })
-        
-    //pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        //client.query('SELECT * FROM salesforce.Serviceability__c', function(err, result) {
-          //done();
-          //if(err) return console.error(err);
-          //console.log(result.rows);
-          //res.status(200).send(JSON.stringify(result));
-        //});
-    //});
-      
+    })      
 });
-
+// ———————— ADDED GET SERVICE ————————
 
 app.listen(app.get('port'), function () {
     console.log('Express server listening on port ' + app.get('port'));
 });
-
-
 
 
