@@ -5,6 +5,10 @@ var pg = require('pg');
 
 var app = express();
 
+// pool takes the object above -config- as parameter
+const connectionString = process.env.DATABASE_URL
+const pool = new Pool({connectionString: connectionString});
+
 app.set('port', process.env.PORT || 5000);
 
 app.use(express.static('public'));
@@ -26,14 +30,29 @@ app.get('/', function (req, res) {
 app.get("/serviceability", (req, res) => {
     console.log("Serviceability");
     //res.send("Hello World");
-    pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM salesforce.Serviceability__c', function(err, result) {
-          done();
-          if(err) return console.error(err);
-          console.log(result.rows);
-          res.status(200).send(JSON.stringify(result));
-        });
-    });
+    pool.connect(function (err, client, done) {
+        if (err) {
+            console.log("Can not connect to the DB" + err);
+        }
+        client.query('SELECT * FROM salesforce.Serviceability__c', function (err, result) {
+            done();
+            if (err) {
+                console.log(err);
+                res.status(400).send(err);
+            }
+            console.log(result.rows);
+            res.status(200).send(JSON.stringify(result));
+        })
+    })
+        
+    //pg.connect(process.env.DATABASE_URL, function(err, client, done) {
+        //client.query('SELECT * FROM salesforce.Serviceability__c', function(err, result) {
+          //done();
+          //if(err) return console.error(err);
+          //console.log(result.rows);
+          //res.status(200).send(JSON.stringify(result));
+        //});
+    //});
       
 });
 
