@@ -39,7 +39,7 @@ app.get("/serviceability", (req, res) => {
         if (err) {
             console.log("Can not connect to the DB" + err);
         }
-        client.query('SELECT * FROM salesforce.Serviceability__c', function (err, result) {
+        client.query('SELECT name, street__c, apartment_or_suite_number__c, city__c, state__c, zip_code__c, fiber_available__c, fiber_placement__c, cpe_installed__c FROM salesforce.Serviceability__c', function (err, result) {
             done();
             if (err) {
                 console.log(err);
