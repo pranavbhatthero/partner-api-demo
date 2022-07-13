@@ -13,10 +13,10 @@ app.use(bodyParser.json());
 ///*
 // ———————— ADDED MOCKING SERVICE ————————
 app.get('/', function (req, res) {
-    console.log('Hello Hello !');
+    console.log('Hello IFN !');
     //console.log('here', Object.keys(req.body));
     // res.status(200).send(req.body);
-    res.send("Hello World");
+    res.send("Hello IFN !");
 
 });
 // ———————— ADDED MOCKING SERVICE ————————  
@@ -27,7 +27,7 @@ app.get("/serviceability", (req, res) => {
     console.log("Serviceability");
     //res.send("Hello World");
     pg.connect(process.env.DATABASE_URL, function(err, client, done) {
-        client.query('SELECT * FROM serviceability', function(err, result) {
+        client.query('SELECT * FROM salesforce.Serviceability__c', function(err, result) {
           done();
           if(err) return console.error(err);
           console.log(result.rows);
