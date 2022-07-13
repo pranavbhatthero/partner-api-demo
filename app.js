@@ -46,7 +46,7 @@ app.get("/serviceability", (req, res) => {
                 res.status(400).send(err);
             }
             console.log(result.rows);
-            res.status(200).send(JSON.stringify(JSON.parse(result.rows), null, '\t'));
+            res.status(200).send(JSON.stringify(result.rows, null, '\t'));
             //res.status(200).send(result.rows);            
         })
     })
